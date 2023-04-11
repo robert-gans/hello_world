@@ -1,0 +1,195 @@
+Nestes códigos temos exemplos simples para entendimentos dos conceitos do capítulo 3:
+Regressão Linear
+Análise de Cluster
+Análise de componentes principais
+Testes de hipóteses
+
+
+1) Exemplo simples de Regressão Linear:
+
+#@title 1) Exemplo simples de Regressão Linear:
+
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Dados de entrada
+X = np.array([[1], [2], [3], [4], [5]])
+y = np.array([2, 4, 6, 8, 10])
+
+# Treinar o modelo de regressão linear
+reg = LinearRegression().fit(X, y)
+
+# Realizar a previsão para novos valores
+novos_valores = np.array([[6], [7]])
+previsao = reg.predict(novos_valores)
+
+# Imprimir a previsão
+print("O resultado numérico desta Regressão Linear é:")
+print() # Este print sem argumento gera uma linha em branco
+print(previsao)
+print() # Este print sem argumento gera uma linha em branco
+
+# Vamos ver o exemplo através de um gráfico para melhor entendimento
+
+#Importando a biblioteca necessária
+import matplotlib.pyplot as plt
+
+print("O resultado gráfico desta Regressão Linear é:")
+print() # Este print sem argumento gera uma linha em branco
+
+# Plotar o gráfico de dispersão e a linha de regressão
+plt.scatter(X, y, color='black')
+plt.plot(X, reg.predict(X), color='blue', linewidth=3, label='Regressão Linear')
+
+# Plotar a previsão como uma nova linha
+plt.plot(novos_valores, previsao, color='green', linestyle='--', linewidth=3, label='Previsão')
+
+# Configurar as legendas do gráfico
+plt.title('Regressão linear simples')
+plt.xlabel('Eixo X')
+plt.ylabel('Eixo Y')
+plt.legend()
+plt.show()
+
+A saída da regressão linear é uma equação matemática que modela a relação entre as variáveis de entrada e de saída. Para cada valor de entrada, a equação fornece uma previsão para o valor de saída correspondente. No exemplo de código Python que apresentei anteriormente, a saída é uma previsão para novos valores de entrada.
+
+
+2) Exemplo simples de Análise de Cluster:
+
+#@title 2) Exemplo simples de Análise de Cluster:
+
+# Este código é um exemplo simples de como usar a biblioteca Scikit-learn em Python para executar o algoritmo de clusterização K-means em um conjunto de dados.
+
+# Primeiramente, o código importa as bibliotecas necessárias: 
+# NumPy para trabalhar com matrizes e o KMeans do Scikit-learn para executar o algoritmo de clusterização.
+
+# Importando bibliotecas necessárias
+import numpy as np
+from sklearn.cluster import KMeans
+
+# Depois, um conjunto de dados é definido como a variável X, que é uma matriz NumPy de seis pontos em um espaço bidimensional.
+
+# Dados de entrada
+X = np.array([[1, 2], [1, 4], [1, 0], [4, 2], [4, 4], [4, 0]])
+
+# O próximo passo é treinar o modelo de clusterização usando a função KMeans do Scikit-learn, que recebe como argumento o número de clusters que deseja-se identificar. 
+# Neste caso, o número de clusters é definido como 2.
+
+# Treinar o modelo de clusterização
+kmeans = KMeans(n_clusters=2).fit(X)
+
+# Obter os rótulos de cluster para cada objeto
+rotulos = kmeans.labels_
+
+# Imprimir os rótulos de cluster
+print("O resultado numérico desta Análise de Cluster é:")
+print() # Este print sem argumento gera uma linha em branco
+print(rotulos)
+print() # Este print sem argumento gera uma linha em branco
+
+# Vamos ver o exemplo através de um gráfico para melhor entendimento
+
+#Importando biblioteca necessária para a plotagem do gráfico
+import matplotlib.pyplot as plt
+
+print("O resultado gráfico desta Análise de Cluster é:")
+print() # Este print sem argumento gera uma linha em branco
+
+# Criar uma figura e um eixo
+fig, ax = plt.subplots()
+
+# Adicionar os pontos ao eixo
+ax.scatter(X[:,0], X[:,1], c=rotulos)
+
+# Exibir o gráfico
+plt.title('Análise de Cluster')
+plt.xlabel('Eixo X')
+plt.ylabel('Eixo Y')
+plt.show()
+
+A saída da análise de cluster é um conjunto de rótulos de cluster, onde cada rótulo identifica a que grupo pertence cada objeto. Os grupos são formados com base em semelhanças entre os objetos, onde objetos semelhantes são atribuídos ao mesmo grupo. No exemplo de código Python que apresentei anteriormente, a saída são os rótulos dos grupos (0 ou 1) para cada objeto de entrada.
+
+
+3) Exemplo simples de Análise de Componentes Principais:
+
+#@title 3) Exemplo simples de Análise de Componentes Principais:
+
+import numpy as np
+from sklearn.decomposition import PCA
+
+# Dados de entrada
+X = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
+
+# Treinar o modelo de ACP
+pca = PCA(n_components=2).fit(X)
+
+# Obter os valores dos componentes principais para cada objeto
+componentes_principais = pca.transform(X)
+
+# Imprimir os valores dos componentes principais
+print("O resultado numérico desta Análise de Componentes principais é:")
+print() # Este print sem argumento gera uma linha em branco
+print(componentes_principais)
+print() # Este print sem argumento gera uma linha em branco
+
+# Vamos ver o exemplo através de um gráfico para melhor entendimento
+
+#Importando biblioteca necessária para a plotagem do gráfico
+import matplotlib.pyplot as plt
+
+print("O resultado gráfico desta Análise de Componentes principais é:")
+print() # Este print sem argumento gera uma linha em branco
+
+# Plotar o scatter plot
+plt.scatter(componentes_principais[:, 0], componentes_principais[:, 1])
+plt.title('Análise de Componentes principais')
+plt.xlabel('Eixo X')
+plt.ylabel('Eixo Y')
+plt.show()
+
+A saída da análise de componentes principais é um conjunto de valores para os componentes principais que foram extraídos dos dados originais. Esses valores representam uma projeção dos dados originais em um novo espaço de dimensão reduzida, onde as dimensões são os componentes principais. No exemplo de código Python que apresentei anteriormente, a saída são os valores dos componentes principais para cada objeto de entrada.
+
+Neste caso específico, o primeiro componente principal é uma combinação linear dos três atributos originais e explica a maior parte da variância dos dados. Já o segundo componente principal é uma combinação linear dos três atributos originais e explica a segunda maior parte da variância dos dados.
+
+Uma combinação linear é uma operação matemática em que um conjunto de valores é multiplicado por um conjunto correspondente de constantes, e os resultados são somados. Em outras palavras, é possível expressar um vetor como uma combinação linear de outros vetores se ele pode ser escrito como uma soma ponderada desses vetores.
+
+
+4) Exemplo simples de Testes de Hipóteses:
+
+#@title 4) Exemplo simples de Testes de Hipóteses:
+
+import numpy as np
+from scipy.stats import ttest_ind
+
+# Dados de entrada
+grupo1 = np.array([1, 2, 3, 4, 5])
+grupo2 = np.array([2, 4, 6, 8, 10])
+
+# Realizar o teste de hipóteses
+resultado = ttest_ind(grupo1, grupo2)
+
+# Imprimir o resultado do teste de hipóteses
+print("O resultado numérico deste teste de hipótese é:")
+print() # Este print sem argumento gera uma linha em branco
+print(resultado)
+print() # Este print sem argumento gera uma linha em branco
+
+# Vamos ver o exemplo através de um gráfico para melhor entendimento
+
+#Importando biblioteca necessária para a plotagem do gráfico
+import matplotlib.pyplot as plt
+
+print("O resultado gráfico deste teste de hipótese é:")
+print() # Este print sem argumento gera uma linha em branco
+
+# Plotar boxplot para cada grupo
+fig, ax = plt.subplots()
+ax.boxplot([grupo1, grupo2])
+ax.set_xticklabels(['Grupo 1', 'Grupo 2'])
+ax.set_ylabel('Valores')
+ax.set_title('Comparação de médias entre dois grupos')
+plt.show()
+
+A saída de um teste de hipóteses é um valor estatístico que indica se há ou não evidências estatísticas suficientes para rejeitar a hipótese nula (a hipótese padrão). O valor estatístico pode ser um valor z ou t, dependendo do tipo de teste de hipóteses que está sendo realizado. No exemplo de código Python que apresentei anteriormente, a saída é um valor t e um valor p, que indicam a estatística do teste e o valor p associado, respectivamente. Se o valor p for menor que o nível de significância escolhido, geralmente 0,05, pode-se rejeitar a hipótese nula e concluir que há diferenças significativas entre os grupos. Caso contrário, a hipótese nula não é rejeitada.
+
+Nesse exemplo, é possível observar que as medianas dos grupos são diferentes, assim como a variabilidade dos dados em cada grupo. Isso é consistente com o resultado do teste de hipóteses que indicou uma diferença significativa entre as médias.
